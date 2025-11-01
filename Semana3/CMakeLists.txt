@@ -14,6 +14,12 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
 add_executable(Semana3
   main.cpp
+  OpType.h
+  Node.h
+  LinkedList.h
+  Stack.h
+
+
 )
 target_link_libraries(Semana3 Qt${QT_VERSION_MAJOR}::Core)
 
