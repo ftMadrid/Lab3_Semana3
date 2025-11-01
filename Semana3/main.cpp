@@ -93,6 +93,8 @@ int main(int argc, char *argv[])
                 break;
             }
 
+            cout << "\n| Undo action executed!" <<endl;
+
             Operation op = undoStack.top();
             undoStack.pop();
 
@@ -108,8 +110,6 @@ int main(int argc, char *argv[])
                 document.replace(op.pos, op.oldValue);
                 redoStack.push({ OpType::Replace, op.pos, op.oldValue, op.newValue });
             }
-
-            cout << "\n| Undo action executed!" <<endl;
             break;
         }
         case 6: {
@@ -127,6 +127,8 @@ int main(int argc, char *argv[])
                 cout << "\n| Cannot redo: Invalid position [" << op.pos << "]!" << endl;
                 break;
             }
+
+            cout << "\n| Redo action executed!" << endl;
 
             try {
                 if (op.type == OpType::Insert) {
@@ -146,21 +148,19 @@ int main(int argc, char *argv[])
             } catch (out_of_range& e) {
                 cout << e.what() << endl;
             }
-
-            cout << "\n| Redo action executed!" << endl;
             break;
         }
         case 7:
             cout << "\n| Clearing all the data";
 
+            document.clear();
+            undoStack.clear();
+            redoStack.clear();
+
             for (int i = 0; i < 3; ++i) {
                 cout << "." << std::flush;
                 sleep_for(1000ms);
             }
-
-            document.clear();
-            undoStack.clear();
-            redoStack.clear();
             cout << "\n| Data has been successfully cleared!" <<endl;
             cout << "\n| Have a great day!" <<endl;
             break;

@@ -18,7 +18,7 @@ class LinkedList {
 public:
     LinkedList();
     Node<T>* head;
-    int lenght;
+    int length;
     void push_back(T value);
     void insert(int pos, T value);
     void erase(int pos);
@@ -33,7 +33,7 @@ public:
 template <class T>
 LinkedList<T>::LinkedList(){
     this->head = nullptr;
-    this->lenght = 0;
+    this->length = 0;
 }
 
 template <class T>
@@ -49,12 +49,12 @@ template <class T>
             }
             it->next = newNode;
         }
-        lenght++;
+        length++;
     }
 
 template <class T>
 void LinkedList<T>::insert(int pos, T value){
-    if(pos < 0 || pos > lenght) {
+    if(pos < 0 || pos > length) {
         cout << "\n| The position is invalid!" <<endl;
         return;
     }
@@ -71,7 +71,7 @@ void LinkedList<T>::insert(int pos, T value){
         it->next = newNode;
     }
     cout << "\n| The word " << value << " has been added in the position [" <<pos<<"]!" <<endl;
-    lenght++;
+    length++;
 }
 
 template <class T>
@@ -81,7 +81,7 @@ void LinkedList<T>::erase(int pos){
         throw out_of_range("\n| This position doesnt have any word!");
     }
 
-    if(pos < 0 || pos >= lenght){
+    if(pos < 0 || pos >= length){
         throw out_of_range("\n| The position is invalid!");
     }
 
@@ -102,13 +102,13 @@ void LinkedList<T>::erase(int pos){
         cout << "\n| The word " << toDelete->data << " has been deleted of the position [" <<pos<<"]!" <<endl;
         delete toDelete;
     }
-    lenght--;
+    length--;
 
 }
 
 template <class T>
 void LinkedList<T>::replace(int pos, T value) {
-    if (pos < 0 || pos >= lenght){
+    if (pos < 0 || pos >= length){
         throw out_of_range("\n| The position is invalid!");
     }
     Node<T>* it = head;
@@ -128,7 +128,7 @@ T LinkedList<T>::at(int pos){
         throw out_of_range("\n| This position doesnt have any word!");
     }
 
-    if(pos < 0 || pos >= lenght){
+    if(pos < 0 || pos >= length){
         throw out_of_range("\n| The position is invalid!");
     }
 
@@ -141,7 +141,7 @@ T LinkedList<T>::at(int pos){
 
 template <class T>
 int LinkedList<T>::size(){
-    return lenght;
+    return length;
 }
 
 template<class T>
@@ -151,7 +151,7 @@ void LinkedList<T>::clear(){
         head = head->next;
         delete it;
     }
-    lenght = 0;
+    length = 0;
 }
 
 template <class T>
